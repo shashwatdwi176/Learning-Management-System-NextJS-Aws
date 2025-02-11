@@ -1,7 +1,7 @@
 # Learning Management System (LMS)
 
 ## 🚀 Overview
-This is a **full-stack** enterprise-grade **Learning Management System (LMS)** built using modern technologies. It provides a scalable and robust platform for managing courses, user authentication, payments, and content delivery.
+This is a **full-stack** enterprise-grade **Learning Management System (LMS)** named  **PINAAK Edutech** built using modern technologies. It provides a scalable and robust platform for managing courses, user authentication, payments, and content delivery.
 
 ## 🛠 Tech Stack
 ### **Frontend**
