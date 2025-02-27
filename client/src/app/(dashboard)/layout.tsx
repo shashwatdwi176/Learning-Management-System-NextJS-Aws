@@ -1,6 +1,7 @@
 "use client"
 
 import AppSideBar from '@/components/AppSideBar';
+import Navbar from '@/components/Navbar';
 // import Navbar from '@/components/Navbar'
 import Loading from '@/components/ui/Loading';
 import { SidebarProvider } from '@/components/ui/sidebar';
@@ -30,7 +31,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         style={{ height: "100vh" }}
                     >
 
-
+                        <Navbar isCoursePage/>
                         <main className="dashboard__body">
                             {children}
                         </main>

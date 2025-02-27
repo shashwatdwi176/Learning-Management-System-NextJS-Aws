@@ -53,13 +53,13 @@ const AppSideBar = () => {
                 <div className='app-sidebar__logo-container group'>
                     <div className='app-sidebar__logo-wrapper'>
                         <Image 
-                          src= "/logo.svg"
+                          src= "/PINAAK_LOGO.png"
                           alt="logo"
-                          width= {25}
-                          height={20}
+                          width= {55}
+                          height={60}
                           className='app-sidebar__logo'
                         />
-                        <p className='app-sidebar__title'>PINAAK Edutech</p>
+                        <p className='app-sidebar__title text-primary-300'>PINAAK Edutech</p>
                     </div>
                     <PanelLeft className='app-sidebar__collapse-icon'/>
                 </div>
