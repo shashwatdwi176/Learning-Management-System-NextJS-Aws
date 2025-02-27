@@ -5,7 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import * as dynamoose from "dynamoose";
-import {createClerkClient} from "@clerk/express"
+import {clerkMiddleware, createClerkClient, requireAuth} from "@clerk/express"
 //routes import
 import courseRoutes from "./routes/courseRoutes"
 import userClerkRoutes from "./routes/userClerkRoutes"
@@ -33,13 +33,14 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(clerkMiddleware());
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
 app.use("/courses", courseRoutes)
-app.use("/user/clerk", userClerkRoutes)
+app.use("/user/clerk", requireAuth(),userClerkRoutes)
 
 const port = process.env.PORT || 3000;
 if (!isProduction){
