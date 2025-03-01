@@ -48,6 +48,7 @@ const express_2 = require("@clerk/express");
 //routes import
 const courseRoutes_1 = __importDefault(require("./routes/courseRoutes"));
 const userClerkRoutes_1 = __importDefault(require("./routes/userClerkRoutes"));
+const transactionRoutes_1 = __importDefault(require("./routes/transactionRoutes"));
 // configurations
 dotenv_1.default.config();
 //Running dynamoDb locally
@@ -72,6 +73,7 @@ app.get('/', (req, res) => {
 });
 app.use("/courses", courseRoutes_1.default);
 app.use("/user/clerk", (0, express_2.requireAuth)(), userClerkRoutes_1.default);
+app.use("/transactions", (0, express_2.requireAuth)(), transactionRoutes_1.default);
 const port = process.env.PORT || 3000;
 if (!isProduction) {
     app.listen(port, () => {
