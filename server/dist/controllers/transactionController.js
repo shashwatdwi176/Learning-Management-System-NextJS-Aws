@@ -47,7 +47,7 @@ const createStripePaymentIntent = (req, res) => __awaiter(void 0, void 0, void 0
     try {
         const paymentIntent = yield stripe.paymentIntents.create({
             amount,
-            currency: "inr",
+            currency: "usd",
             automatic_payment_methods: {
                 enabled: true,
                 allow_redirects: "never",

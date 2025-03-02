@@ -48,7 +48,7 @@ export const createStripePaymentIntent = async (
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
-      currency: "inr",
+      currency: "usd",
       automatic_payment_methods: {
         enabled: true,
         allow_redirects: "never",
