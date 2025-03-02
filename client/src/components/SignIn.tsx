@@ -23,10 +23,10 @@ const SignInComponent = () => {
 
     const userType = user?.publicMetadata?.userType as string;
     if (userType === "teacher") {
-      return "/teacher/courses";
+      return "/teacher/profile";
     }
     console.log(userType)
-    return "/user/courses";
+    return "/user/profile";
   };
 
   return (
