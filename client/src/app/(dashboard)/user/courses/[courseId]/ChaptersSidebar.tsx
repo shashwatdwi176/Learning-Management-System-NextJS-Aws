@@ -9,8 +9,9 @@ import {
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/components/ui/sidebar";
-import Loading from "@/components/Loading";
+import Loading from "@/components/ui/Loading";
 import { useCourseProgressData } from "@/hooks/useCourseProgressData";
+
 
 const ChaptersSidebar = () => {
   const router = useRouter();

@@ -1,8 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isStudentRoute = createRouteMatcher(["/user/(.*)"]);
-const isTeacherRoute = createRouteMatcher(["/teacher/(.*)"]);
+
 
 export default clerkMiddleware(async (auth, req) => {
   const { sessionClaims } = await auth();
@@ -17,13 +16,6 @@ export default clerkMiddleware(async (auth, req) => {
 
   console.log("User Role:", userRole);
 
-  // if (isStudentRoute(req) && userRole !== "student") {
-  //   return NextResponse.redirect(new URL("/teacher/courses", req.url));
-  // }
-
-  // if (isTeacherRoute(req) && userRole !== "teacher") {
-  //   return NextResponse.redirect(new URL("/user/courses", req.url));
-  // }
 
   return NextResponse.next();
 });

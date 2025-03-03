@@ -1,7 +1,19 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import * as z from "zod";
-import { api } from "../state/api";
+import { useUpdateUserMutation,
+  useCreateCourseMutation,
+  useUpdateCourseMutation,
+  useDeleteCourseMutation,
+  useGetCoursesQuery,
+  useGetCourseQuery,
+  useGetUploadVideoUrlMutation,
+  useGetTransactionsQuery,
+  useCreateTransactionMutation,
+  useCreateStripePaymentIntentMutation,
+  useGetUserEnrolledCoursesQuery,
+  useGetUserCourseProgressQuery,
+  useUpdateUserCourseProgressMutation, } from "../state/api";
 import { toast } from "sonner";
 
 export function cn(...inputs: ClassValue[]) {
