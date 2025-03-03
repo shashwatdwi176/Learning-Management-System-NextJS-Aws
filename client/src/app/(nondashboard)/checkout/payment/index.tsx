@@ -1,5 +1,5 @@
 import React from "react";
-
+import StripeProvider from "./StripeProvider";
 import {
   PaymentElement,
   useElements,
@@ -11,10 +11,8 @@ import { useClerk, useUser } from "@clerk/nextjs";
 import CoursePreview from "@/components/CoursePreview";
 import { CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-import { toast } from "sonner";
-import StripeProvider from "../details/StripeProvider";
 import { useCreateTransactionMutation } from "@/state/api";
+import { toast } from "sonner";
 
 const PaymentPageContent = () => {
   const stripe = useStripe();

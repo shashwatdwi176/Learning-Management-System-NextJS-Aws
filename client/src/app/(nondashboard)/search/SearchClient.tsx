@@ -1,35 +1,39 @@
+// src/app/(nondashboard)/search/SearchClient.tsx (Client Component)
+
 "use client";
 
-import Loading from "@/components/Loading";
+import Loading from "@/components/ui/Loading";
 import { useGetCoursesQuery } from "@/state/api";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CourseCardSearch from "@/components/CourseCardSearch";
 import SelectedCourse from "./SelectedCourse";
 
-const Search = () => {
-  const router = useRouter();
+interface SearchClientProps {
+  initialId: string;
+}
+
+const SearchClient: React.FC<SearchClientProps> = ({ initialId }) => {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id") || initialId;
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const router = useRouter();
 
-  // Get the `id` query parameter using URLSearchParams
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id");
-
-    if (courses) {
-      const course = id ? courses.find((c) => c.courseId === id) : courses[0];
-      setSelectedCourse(course || courses[0]);
+    if (courses && id) {
+      const course = courses.find((c) => c.courseId === id);
+      setSelectedCourse(course || (courses.length > 0 ? courses[0] : null));
     }
-  }, [courses]);
+  }, [courses, id, searchParams]);
 
   if (isLoading) return <Loading />;
-  if (isError || !courses) return <div>Failed to fetch courses</div>;
+  if (isError || !courses) return <div>Failed to fetch the courses</div>;
 
   const handleCourseSelect = (course: Course) => {
     setSelectedCourse(course);
-    router.push(`/search?id=${course.courseId}`, { scroll: false });
+    router.push(`/search?id=${course.courseId}`);
   };
 
   const handleEnrollNow = (courseId: string) => {
@@ -63,7 +67,6 @@ const Search = () => {
             />
           ))}
         </motion.div>
-
         {selectedCourse && (
           <motion.div
             initial={{ y: 40, opacity: 0 }}
@@ -82,4 +85,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchClient;
