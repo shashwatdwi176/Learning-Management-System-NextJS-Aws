@@ -47,4 +47,4 @@ const SelectedCourse = ({ course, handleEnrollNow }: SelectedCourseProps) => {
   );
 };
 
-export default SelectedCourse;
+export default SelectedCourse; 

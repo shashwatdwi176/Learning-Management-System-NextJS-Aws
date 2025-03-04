@@ -5,6 +5,8 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import * as dynamoose from "dynamoose";
+import severless from "serverless-http"
+import seed from './seed/seedDynamodb'
 import {clerkMiddleware, createClerkClient, requireAuth} from "@clerk/express"
 //routes import
 import courseRoutes from "./routes/courseRoutes"
@@ -44,9 +46,26 @@ app.use("/courses", courseRoutes)
 app.use("/user/clerk", requireAuth(),userClerkRoutes)
 app.use("/transactions", requireAuth(), transactionRoutes)
 
+
+// server
 const port = process.env.PORT || 3000;
 if (!isProduction){
     app.listen(port, () => {
         console.log(`Server running on port: ${port}`);
     });
+}
+
+// aws production environment
+
+const severlessApp = severless(app);
+export const handler = async(event: any , context: any) => {
+    if (event.action === "seed"){
+        await seed();
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ message: "Data seeded successfully" })
+        }
+    }else{
+        return  severlessApp(event, context);
+    }
 }
